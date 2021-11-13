@@ -14,12 +14,12 @@ contract('EthSwap', () => {
 
     before(async () => {
         token = await Token.new()
-        ethSwap = await EthSwap.new()
+        ethSwap = await EthSwap.new(token.address)
         // Transfer all tokens to EthSwap (1M)
         await token.transfer(ethSwap.address, tokens('1000000'));
     })
 
-    describe('EthSwap deployment', async () => {
+    describe('Token deployment', async () => {
         it('contract has a name', async () => {
             let token = await Token.new()
             const name = await token.name()
@@ -29,7 +29,6 @@ contract('EthSwap', () => {
 
     describe('EthSwap deployment', async () => {
         it('contract has a name', async () => {
-            let ethSwap = await EthSwap.new()
             const name = await ethSwap.name()
             assert.equal(name,'EthSwap Instant Exchange')
         })
